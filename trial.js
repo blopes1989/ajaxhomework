@@ -43,19 +43,25 @@ renderButtons();
             // displayMovieInfo function re-renders the HTML to display the appropriate content
             function displayGif() {
 
-                var sport = $(this).attr("data-name");
-                var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=Sdu6oyK6zBMPIF0HZ2AGmwSOGLlCLorw&q="+ sport +"&limit=10&offset=0&rating=PG&lang=en";
+                var sportz = $(this).attr("data-name");
+                var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=Sdu6oyK6zBMPIF0HZ2AGmwSOGLlCLorw&q="+ sportz +"&limit=10&offset=0&rating=PG&lang=en";
         
                 // Creating an AJAX call for the specific movie button being clicked
                 $.ajax({
                   url: queryURL,
                   method: "GET"
                 }).then(function(response) {
+                    for (i=0; i<response.data.length; i++){
         
-                  // Creating a div to hold the movie
-                  var gif = $("<div class='gifDiv'>");
-                  gif=response
-
+                                      // Creating a div to hold the images
+                  var gif = $("<img>");
+                  gif.addClass("gif");
+                  gif.attr("src", response.data[i].images.fixed_height_still.url);
+                  gif.attr("data-still", response.data[i].images.fixed_height_still.url);
+                  gif.attr("data-animate", response.data[i].images.fixed_height.url);
+                  gif.attr("data-state", "still")
+                  $(".sportGif").append(gif)
+                    }
                 });
         console.log(queryURL)
               }

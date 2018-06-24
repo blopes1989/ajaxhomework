@@ -36,7 +36,10 @@ $( document ).ready(function() {
           // Creating a div to hold the movie
           var gif = $("<div class='gifDiv'>");
 
-          movieDiv.append(image);
+
+
+          gifDiv.append(image);
+          
         });
 
       }
