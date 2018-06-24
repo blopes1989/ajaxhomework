@@ -19,31 +19,26 @@ $( document ).ready(function() {
     console.log(sarray)
     
     
-    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=Sdu6oyK6zBMPIF0HZ2AGmwSOGLlCLorw&q="+ sarray +"&limit=10&offset=0&rating=PG&lang=en"
-    function searchDisplay (){
+    
 
-    };
+      // displayMovieInfo function re-renders the HTML to display the appropriate content
+      function displayMovieInfo() {
 
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-      }).then(function(response) {
+        var sport = $(this).attr("data-name");
+        var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=Sdu6oyK6zBMPIF0HZ2AGmwSOGLlCLorw&q="+ sport +"&limit=10&offset=0&rating=PG&lang=en";
 
-        var searchDiv = $("<div class='searched'>")
+        // Creating an AJAX call for the specific movie button being clicked
+        $.ajax({
+          url: queryURL,
+          method: "GET"
+        }).then(function(response) {
 
+          // Creating a div to hold the movie
+          var gif = $("<div class='gifDiv'>");
 
-        
+          movieDiv.append(image);
+        });
 
-
-
-console.log(queryURL)
-
-console.log(response)
-
-
-
-
-
-})
+      }
 
 });
