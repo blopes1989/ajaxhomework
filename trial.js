@@ -13,7 +13,7 @@ $( document ).ready(function() {
           // Then dynamicaly generating buttons for each item array.
           var a = $("<button>");
           // Adding a class
-          a.addClass("btn btn-primary");
+          a.addClass("btn btn-primary show");
           // Adding a data-attribute with a value of the movie at index i
           a.attr("data-name", sarray[i]);
           // Providing the button's text with a value of the movie at index i
@@ -42,6 +42,7 @@ renderButtons();
 
             // displayMovieInfo function re-renders the HTML to display the appropriate content
             function displayGif() {
+                $(".sportGif").empty();
 
                 var sportz = $(this).attr("data-name");
                 var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=Sdu6oyK6zBMPIF0HZ2AGmwSOGLlCLorw&q="+ sportz +"&limit=10&offset=0&rating=PG&lang=en";
@@ -65,7 +66,7 @@ renderButtons();
                 });
         console.log(queryURL)
               }
-              $(document).on("click", ".searchbuttons", displayGif);
+              $(document).on("click", ".show", displayGif);
         
 
 
