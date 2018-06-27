@@ -56,10 +56,12 @@ renderButtons();
         
                                       // Creating a div to hold the images
                   var gif = $("<img>");
+                  var still = response.data[i].images.fixed_height_still.url;
+                  var animated = response.data[i].images.fixed_height.url;
                   gif.addClass("gif");
-                  gif.attr("src", response.data[i].images.fixed_height_still.url);
-                  gif.attr("data-still", response.data[i].images.fixed_height_still.url);
-                  gif.attr("data-animate", response.data[i].images.fixed_height.url);
+                  gif.attr("src", still);
+                  gif.attr("data-still", still);
+                  gif.attr("data-animate", animated);
                   gif.attr("data-state", "still")
                   $(".sportGif").append(gif)
                     }
@@ -67,6 +69,16 @@ renderButtons();
         console.log(queryURL)
               }
               $(document).on("click", ".show", displayGif);
+              $(document).on("click", ".gif", function (){
+                var state = $(this).attr("data-state");
+                if (state === "still") {
+                    $(this).attr("src", $(this).attr("data-animate"));
+                    $(this).attr("data-state", "animate");
+                  } else {
+                    $(this).attr("src", $(this).attr("data-still"));
+                    $(this).attr("data-state", "still");
+                  }
+                });
         
 
 
